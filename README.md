@@ -7,8 +7,8 @@
 
 # ❔ Discord.js-Music
 
-For those who don't know what this is.. This is a NPM package to easily make your own (discord.js) music bot.
-There are a lot of functions to use, as example: play, stop, skip, pause, resume and much more! Go check it out.
+For those who don't know what this is.. This is a NPM package to easily make your own (discord.js) music bot. <br>
+There are a lot of functions to use, as example: play, stop, skip, pause, resume and much more! Go check it out. <br>
 [More Info!](https://npmjs.com/package/@koenie06/discord.js-music)
 
 # 🤖 Example Bot
