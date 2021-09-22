@@ -18,7 +18,7 @@ music.event.on('addSong', (channel, songInfo, requester) => {
 });
 
 /* This will run when a song started playing from a playlist */
-events.on('playList', async (channel, playlist, songInfo, requester) => {
+music.event.on('playList', async (channel, playlist, songInfo, requester) => {
     channel.send({
         content: `Started playing the song [${songInfo.title}](${songInfo.url}) by \`${songInfo.author}\` of the playlist ${playlist.title}.
         This was requested by ${requester.tag} (${requester.id})`
@@ -26,7 +26,7 @@ events.on('playList', async (channel, playlist, songInfo, requester) => {
 });
 
 /* This will run when a new playlist has been added to the queue */
-events.on('addList', async (channel, playlist, requester) => {
+music.event.on('addList', async (channel, playlist, requester) => {
     channel.send({
         content: `Added the playlist [${playlist.title}](${playlist.url}) with ${playlist.videos.length} amount of videos to the queue.
         Added by ${requester.tag} (${requester.id})`
