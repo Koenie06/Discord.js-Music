@@ -15,11 +15,17 @@ module.exports = {
         /* This will get the boolean that has been provided */
         const boolean = interaction.options.getBoolean('onoroff');
 
+        /* Checking if the bot is connected. If it isn't, return. */
+        const isConnected = await music.isConnected({
+            interaction: interaction
+        });
+        if(!isConnected) return interaction.reply({ content: 'There are no songs playing', ephemeral: true });
+
         /* Checking if the music is already repeated. If it is, return. */
         const isRepeated = music.isRepeated({
             interaction: interaction
         });
-        if(isRepeated === boolean) return interaction.reply({ content: `The repeat option is also on ${boolean}`, ephemeral: true });
+        if(isRepeated === boolean) return interaction.reply({ content: `Repeat mode is already on ${boolean}`, ephemeral: true });
 
         /* Get more info about how the repeat command works at https://npmjs.com/package/@koenie06/discord.js-music#repeat */
         music.repeat({

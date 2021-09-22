@@ -15,6 +15,12 @@ module.exports = {
         /* This will get the number that has been provided */
         const number = interaction.options.getInteger('number');
 
+        /* Checking if the bot is connected. If it isn't, return. */
+        const isConnected = await music.isConnected({
+            interaction: interaction
+        });
+        if(!isConnected) return interaction.reply({ content: 'There are no songs playing', ephemeral: true });
+
         /* Checking if the number is higher than the queue length. If it is, return. */
         const queue = music.queue({
             interaction: interaction

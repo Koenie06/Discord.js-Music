@@ -7,6 +7,12 @@ module.exports = {
 		.setDescription('Pauses the current playing song'),
 	async execute(interaction) {
 
+        /* Checking if the bot is connected. If it isn't, return. */
+        const isConnected = await music.isConnected({
+            interaction: interaction
+        });
+        if(!isConnected) return interaction.reply({ content: 'There are no songs playing', ephemeral: true });
+
         /* Checking if the music is already paused. If it is, return. */
         const isPaused = music.isPaused({
             interaction: interaction

@@ -3,8 +3,8 @@ const music = require('@koenie06/discord.js-music');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('stop')
-		.setDescription('Stops the music of the bot and disconnects'),
+		.setName('getqueue')
+		.setDescription('Shows the queue'),
 	async execute(interaction) {
 
 		/* Checking if the bot is connected. If it isn't, return. */
@@ -13,16 +13,18 @@ module.exports = {
         });
         if(!isConnected) return interaction.reply({ content: 'There are no songs playing', ephemeral: true });
 
-		/* Checking if there is music playing or not. If there isn't, return. */
-		const queue = music.queue({
-			interaction: interaction
-		});
-		if(queue.length === 0) return interaction.reply({ content: 'No music is playing', ephemeral: true });
-
-        /* Get more info about how the stop command works at https://npmjs.com/package/@koenie06/discord.js-music#stop */
-        music.stop({
+        /* Get more info about how the getQueue command works at https://npmjs.com/package/@koenie06/discord.js-music#getqueue */
+        const queue = await music.getQueue({
             interaction: interaction
         });
+
+        let response = ``;
+
+        for (let i = 0; i < queue.length; i++) {
+            response += `${i + 1}. [${queue[i].info.title}](${queue[i].info.url}) - ${queue[i].info.duration}\n`
+        };
+
+        interaction.reply({ content: response });
 
 	},
 };
