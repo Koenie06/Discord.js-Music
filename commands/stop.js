@@ -14,7 +14,7 @@ module.exports = {
         if(!isConnected) return interaction.reply({ content: 'There are no songs playing', ephemeral: true });
 
 		/* Checking if there is music playing or not. If there isn't, return. */
-		const queue = music.queue({
+		const queue = music.getQueue({
 			interaction: interaction
 		});
 		if(queue.length === 0) return interaction.reply({ content: 'No music is playing', ephemeral: true });
